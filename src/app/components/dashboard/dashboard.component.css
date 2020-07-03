@@ -1,0 +1,47 @@
+:host {
+  /*display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;*/
+  margin-top: 25px;
+}
+
+.container-dash {
+  padding: 15px 20px;
+}
+
+.header {
+  padding: 5px 0px;
+  color: grey !important;
+}
+
+.dash-data, .dash-result{
+  padding: 15px 35px;
+  border: 1px solid black;
+}
+
+.input-style{
+  width: 100%;
+  padding: 5px 0px;
+}
+
+.input-style>button{
+  width: 100%;
+  margin-top: 10px;
+}
+
+.input-style>label, .input-style>input {
+  display: inline-block;
+}
+
+@media(max-width: 600px) {
+  .dash-data, .dash-result{
+    padding: 15px 10px;
+    border: none;
+  }
+}
+
+.not-active{
+  display: none;
+}

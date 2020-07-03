@@ -1,0 +1,138 @@
+<div class="container-dash">
+
+  <div class="row center-xs">
+    <div class="col-xs-12">
+        <img class="ui centered small image" src="https://gruposantopollo.com/img/santo_pollo_logo_azul.png">
+    </div>
+  </div>
+
+  <div [ngClass]="datosCalculo" class="row center-xs">
+    <div class="col-md-6 col-xs-12 dash-data">
+      <h3 class="ui header">COTIZADOR</h3>  
+      <div class="ui form dash-form">
+        <div class="input-style">
+          <label>Peso promedio</label>
+          <input [(ngModel)]="grupo.pesoPromedio" type="number" name="pesoPromedio">
+        </div>
+        <div class="input-style">
+          <label>Precio proveedor (kilo)</label>
+          <input [(ngModel)]="grupo.precioProveedor" type="number" name="precioProveedor">
+        </div>
+        <div class="input-style">
+          <label>Costo litro diesel</label>
+          <input [(ngModel)]="grupo.costoDiesel" type="number" name="costoDiesel">
+        </div>
+        <div class="input-style">
+          <label>Cantidad de pollo</label>
+          <input [(ngModel)]="grupo.cantidadPollo" type="number" name="cantidadPollo">
+        </div>
+        <div class="input-style">
+          <label>Seleccionar proveedor</label>
+          <select [(ngModel)]="grupo.proveedor" class="ui search dropdown" name="proveedor">
+            <option *ngFor="let option of proveedores" value="{{option.id}}"> 
+                {{ option.nombre }}
+            </option>
+          </select>
+        </div>
+        <div class="input-style">
+          <button class="ui button primary" type="submit" name="btnCalcular" (click)="calcularPrecio()">Calcular</button>
+        </div>
+        
+      </div>
+    </div>
+
+    <div [ngClass]="costoVenta" class="col-md-6 col-xs-12 dash-result">
+      <table class="ui unstackable table">
+        <thead>
+          <tr>
+            <th>Resultados</th>
+            <th class="right aligned"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Costo unitario merma</td>
+            <td class="right aligned">{{ calculos.costoMerma }}</td>
+          </tr>
+          <tr>
+            <td>Costo unitario viaje</td>
+            <td class="right aligned">{{ calculos.costoUniViaje }}</td>
+          </tr>
+          <tr>
+            <td>Costo pollo vivo:</td>
+            <td class="right aligned"><b>{{ calculos.costoPollo }}</b></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ui form" style="">
+        <div class="field inline input-style">
+          <label>Costo de venta</label>
+          <input [(ngModel)]="calculos.costoVenta" type="number">
+        </div>
+        <div class="input-style">
+          <button class="ui button primary" type="submit" (click)="mostrarTabla()">Cotizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div [ngClass]="resultadoCosto" class="row center-xs">
+    <div class="col-md-6 col-xs-12 dash-result" style="overflow-x:auto;">
+      <h3 class="ui header">CATÁLOGO DE PRODUCTOS</h3>  
+      <br>
+<!--
+      <div class="six wide field">
+        <label class="center">Tipo de cliente</label>
+        <div class="two fields">
+          <div class="field">
+            <select [(ngModel)]="cliente" class="ui fluid search dropdown" name="cliente">
+              <option *ngFor="let option of clientes" value="{{option.id}}">
+                {{option.nombre }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+-->
+      <table class="ui unstackable table" style="text-align:center">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Costo</th>
+              <th>A</th>
+              <th>B</th>
+              <th>C</th>
+              <th>Otro</th>
+              <th>Costo manual</th>
+              <th>Utilidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let costo of costoProductos">
+              <td style="width: 40%;">{{costo.producto}}</td>
+              <td  style="width: 20%;">{{costo.valor}}</td>
+              <td  style="width: 20%;">{{costo.mayoreo}}</td>
+              <td  style="width: 20%;">{{costo.menudeo}}</td>
+              <td  style="width: 20%;">{{costo.amigo}}</td>
+              <td  style="width: 20%;">{{costo.otro}}</td>
+              <td style="width: 20%;">
+                <div class="ui form input-style" >
+                  <input [(ngModel)]="costo.costoManual" style="width: 80px;" type="number">
+                </div>
+              </td>
+              <td style="width: 20%;">{{ calcularUtilidadReal(costo) }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="input-style">
+          <button class="ui button" type="submit" (click)="envioCorreo()">Enviar correo</button>
+          <label>{{message}}</label>
+        </div>
+        <div class="input-style">
+          <button class="ui button primary" type="submit">Regresar</button>
+        </div>
+    </div>
+  </div>
+
+</div>

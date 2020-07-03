@@ -1,0 +1,12 @@
+:host {
+  margin-top: 25px;
+}
+
+.container-dash {
+  padding: 15px 20px;
+}
+
+.header {
+  padding: 10px 0px 15px;
+  color: grey !important;
+}
