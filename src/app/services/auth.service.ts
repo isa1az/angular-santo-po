@@ -61,15 +61,19 @@ export class AuthService {
   // }
 
   public login(user: User) {
+    console.log('login started');
     const found = USERS.find(item => item.user === user.user);
 
     // Validate user
     if (!found) {
+      console.log('login error');
       throw new Error('Usuario no encontrado');
     } else if (found.password !== user.password) {
+      console.log('login error');
       throw new Error('La contraseña no es correcta');
     }
 
+    console.log('login redirect');
     // Log in
     this._authentication.next(true);
     this.router.navigate(['/']);

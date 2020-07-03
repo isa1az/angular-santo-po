@@ -3,12 +3,15 @@
       <img class="ui centered small image" src="https://gruposantopollo.com/img/santo_pollo_logo_azul.png">
       <h2 class="ui header">Bienvenidos</h2>
       <div class="ui input login-input">
-        <input type="text" placeholder="Usuario">
+        <input [(ngModel)]="user" type="text" placeholder="Usuario">
       </div>
       <div class="ui input login-input">
-        <input type="password" placeholder="Contraseña">
+        <input [(ngModel)]="password" type="password" placeholder="Contraseña">
       </div>
-      <button class="ui button login-btn" type="submit">LOGIN</button>
+      <button class="ui button login-btn" type="submit" click="login()">LOGIN</button>
+      <div class="login-error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
     </div>
     <div class="login-blue-bar"></div>
   </div>
