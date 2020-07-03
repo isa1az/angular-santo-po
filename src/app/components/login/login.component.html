@@ -8,7 +8,7 @@
       <div class="ui input login-input">
         <input [(ngModel)]="password" type="password" placeholder="Contraseña">
       </div>
-      <button class="ui button login-btn" type="submit" click="login()">LOGIN</button>
+      <button class="ui button login-btn" (click)="login()">LOGIN</button>
       <div class="login-error" *ngIf="errorMessage">
         {{ errorMessage }}
       </div>

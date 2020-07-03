@@ -25,7 +25,7 @@ const USERS: User[] = [
   providedIn: 'root'
 })
 export class AuthService {
-  private _authentication = new BehaviorSubject(false);
+  private _authentication = new BehaviorSubject(true);
   public authenticated$ = this._authentication.asObservable();
 
   constructor(private router: Router) {
